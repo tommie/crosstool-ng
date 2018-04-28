@@ -1,0 +1,161 @@
+diff -Nruw newlib-2.5.0.20170323.orig/config/acx.m4 newlib-2.5.0.20170323/config/acx.m4
+--- newlib-2.5.0.20170323.orig/config/acx.m4	2017-03-22 10:10:15.000000000 +0000
++++ newlib-2.5.0.20170323/config/acx.m4	2018-04-28 23:50:00.057044553 +0100
+@@ -324,7 +324,7 @@
+     else
+       AC_MSG_RESULT(no)
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "[$]$1"; then
+     $1=`$GCC_FOR_TARGET --print-prog-name=$2`
+     test [$]$1 = $2 && $1=
+     test -n "[$]$1" && ac_cv_path_$1=[$]$1
+diff -Nruw newlib-2.5.0.20170323.orig/configure newlib-2.5.0.20170323/configure
+--- newlib-2.5.0.20170323.orig/configure	2017-03-22 10:10:15.000000000 +0000
++++ newlib-2.5.0.20170323/configure	2018-04-29 00:02:38.678733139 +0100
+@@ -10946,7 +10946,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$AR_FOR_TARGET"; then
+     AR_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=ar`
+     test $AR_FOR_TARGET = ar && AR_FOR_TARGET=
+     test -n "$AR_FOR_TARGET" && ac_cv_path_AR_FOR_TARGET=$AR_FOR_TARGET
+@@ -11176,7 +11176,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$AS_FOR_TARGET"; then
+     AS_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=as`
+     test $AS_FOR_TARGET = as && AS_FOR_TARGET=
+     test -n "$AS_FOR_TARGET" && ac_cv_path_AS_FOR_TARGET=$AS_FOR_TARGET
+@@ -11406,7 +11406,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$DLLTOOL_FOR_TARGET"; then
+     DLLTOOL_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=dlltool`
+     test $DLLTOOL_FOR_TARGET = dlltool && DLLTOOL_FOR_TARGET=
+     test -n "$DLLTOOL_FOR_TARGET" && ac_cv_path_DLLTOOL_FOR_TARGET=$DLLTOOL_FOR_TARGET
+@@ -11636,7 +11636,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$LD_FOR_TARGET"; then
+     LD_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=ld`
+     test $LD_FOR_TARGET = ld && LD_FOR_TARGET=
+     test -n "$LD_FOR_TARGET" && ac_cv_path_LD_FOR_TARGET=$LD_FOR_TARGET
+@@ -11866,7 +11866,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$LIPO_FOR_TARGET"; then
+     LIPO_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=lipo`
+     test $LIPO_FOR_TARGET = lipo && LIPO_FOR_TARGET=
+     test -n "$LIPO_FOR_TARGET" && ac_cv_path_LIPO_FOR_TARGET=$LIPO_FOR_TARGET
+@@ -12096,7 +12096,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$NM_FOR_TARGET"; then
+     NM_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=nm`
+     test $NM_FOR_TARGET = nm && NM_FOR_TARGET=
+     test -n "$NM_FOR_TARGET" && ac_cv_path_NM_FOR_TARGET=$NM_FOR_TARGET
+@@ -12326,7 +12326,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$OBJCOPY_FOR_TARGET"; then
+     OBJCOPY_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=objcopy`
+     test $OBJCOPY_FOR_TARGET = objcopy && OBJCOPY_FOR_TARGET=
+     test -n "$OBJCOPY_FOR_TARGET" && ac_cv_path_OBJCOPY_FOR_TARGET=$OBJCOPY_FOR_TARGET
+@@ -12556,7 +12556,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$OBJDUMP_FOR_TARGET"; then
+     OBJDUMP_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=objdump`
+     test $OBJDUMP_FOR_TARGET = objdump && OBJDUMP_FOR_TARGET=
+     test -n "$OBJDUMP_FOR_TARGET" && ac_cv_path_OBJDUMP_FOR_TARGET=$OBJDUMP_FOR_TARGET
+@@ -12786,7 +12786,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$RANLIB_FOR_TARGET"; then
+     RANLIB_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=ranlib`
+     test $RANLIB_FOR_TARGET = ranlib && RANLIB_FOR_TARGET=
+     test -n "$RANLIB_FOR_TARGET" && ac_cv_path_RANLIB_FOR_TARGET=$RANLIB_FOR_TARGET
+@@ -13016,7 +13016,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$READELF_FOR_TARGET"; then
+     READELF_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=readelf`
+     test $READELF_FOR_TARGET = readelf && READELF_FOR_TARGET=
+     test -n "$READELF_FOR_TARGET" && ac_cv_path_READELF_FOR_TARGET=$READELF_FOR_TARGET
+@@ -13246,7 +13246,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$STRIP_FOR_TARGET"; then
+     STRIP_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=strip`
+     test $STRIP_FOR_TARGET = strip && STRIP_FOR_TARGET=
+     test -n "$STRIP_FOR_TARGET" && ac_cv_path_STRIP_FOR_TARGET=$STRIP_FOR_TARGET
+@@ -13476,7 +13476,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$WINDRES_FOR_TARGET"; then
+     WINDRES_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=windres`
+     test $WINDRES_FOR_TARGET = windres && WINDRES_FOR_TARGET=
+     test -n "$WINDRES_FOR_TARGET" && ac_cv_path_WINDRES_FOR_TARGET=$WINDRES_FOR_TARGET
+@@ -13706,7 +13706,7 @@
+       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+     fi
+-  elif test $build != $host && test $have_gcc_for_target = yes; then
++  elif test $build != $host && test $have_gcc_for_target = yes && test -z "$WINDMC_FOR_TARGET"; then
+     WINDMC_FOR_TARGET=`$GCC_FOR_TARGET --print-prog-name=windmc`
+     test $WINDMC_FOR_TARGET = windmc && WINDMC_FOR_TARGET=
+     test -n "$WINDMC_FOR_TARGET" && ac_cv_path_WINDMC_FOR_TARGET=$WINDMC_FOR_TARGET
+@@ -16117,4 +16117,3 @@
+   { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: unrecognized options: $ac_unrecognized_opts" >&5
+ $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
+ fi
+-
+diff -Nruw newlib-2.5.0.20170323.orig/newlib/configure newlib-2.5.0.20170323/newlib/configure
+--- newlib-2.5.0.20170323.orig/newlib/configure	2017-03-22 10:10:15.000000000 +0000
++++ newlib-2.5.0.20170323/newlib/configure	2018-04-28 21:03:23.562816645 +0100
+@@ -12562,7 +12562,7 @@
+ int foo (void) { return 1; }
+ int (*fp) (void) __attribute__ ((section (".init_array"))) = foo;
+ EOF
+-if { ac_try='${CC} $CFLAGS $CPPFLAGS -c -o conftest conftest.c
++if { ac_try='${CC} ${CFLAGS//-flto /} $CPPFLAGS -c -o conftest conftest.c
+ 							1>&5'
+   { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_try\""; } >&5
+   (eval $ac_try) 2>&5
+diff -Nruw newlib-2.5.0.20170323.orig/newlib/configure.in newlib-2.5.0.20170323/newlib/configure.in
+--- newlib-2.5.0.20170323.orig/newlib/configure.in	2017-03-22 10:10:15.000000000 +0000
++++ newlib-2.5.0.20170323/newlib/configure.in	2018-04-28 20:34:57.804870468 +0100
+@@ -558,7 +558,7 @@
+ int foo (void) { return 1; }
+ int (*fp) (void) __attribute__ ((section (".init_array"))) = foo;
+ EOF
+-if AC_TRY_COMMAND([${CC} $CFLAGS $CPPFLAGS -c -o conftest conftest.c
++if AC_TRY_COMMAND([${CC} ${CFLAGS//-flto /} $CPPFLAGS -c -o conftest conftest.c
+ 							1>&AS_MESSAGE_LOG_FD])
+ then
+   if ${READELF} -S conftest | grep -e INIT_ARRAY > /dev/null; then
